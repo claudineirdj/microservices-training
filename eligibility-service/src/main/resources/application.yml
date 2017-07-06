@@ -1,0 +1,39 @@
+management.security.enabled: false
+spring.application.name: eligibility-service
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:7001/eureka
+    instance:
+      lease-expiration-duration-in-seconds: 2
+      lease-renewal-interval-in-seconds: 1
+spring:
+  zipkin:
+   base-url: http://localhost:7005
+  sleuth:
+   sampler:
+     percentage: 1.0
+---
+spring:
+  profiles: instance-1
+server:
+  port: 8001
+instanceId: 1
+autoconfigured.eligibility.response: static_eligibility
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}
+---
+spring:
+  profiles: instance-2
+server:
+  port: 8002
+instanceId: 2
+autoconfigured.eligibility.response: static_eligibility
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}
+---
+spring:
+  profiles: instance-3
+server:
+  port: 8003
+instanceId: 3
+autoconfigured.eligibility.response: static_eligibility
+eligibility.response: ${autoconfigured.eligibility.response}_${instanceId}

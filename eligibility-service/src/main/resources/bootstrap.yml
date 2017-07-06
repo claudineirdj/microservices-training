@@ -1,0 +1,3 @@
+spring.cloud.config:
+  fail-fase: true
+  uri: http://localhost:7004
